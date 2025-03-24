@@ -10,11 +10,11 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [selectedTable, setSelectedTable] = useState(tabs[0]);
+  const [selectedTableId, setSelectedTable] = useState(tabs[0]);
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {selectedTable.title}</h1>
+      <h1 className="title">Selected tab is {selectedTableId.title}</h1>
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
@@ -22,13 +22,13 @@ export const App = () => {
             {tabs.map(tab => (
               <li
                 key={tab.id}
-                className={tab.id === selectedTable.id ? 'is-active' : ''}
+                className={tab.id === selectedTableId ? 'is-active' : ''}
                 data-cy="Tab"
               >
                 <a
                   href={`#${tab.id}`}
                   data-cy="TabLink"
-                  onClick={() => setSelectedTable(tab)}
+                  onClick={() => setSelectedTable(tab.id)}
                 >
                   {tab.title}
                 </a>
@@ -38,7 +38,7 @@ export const App = () => {
         </div>
 
         <div className="block" data-cy="TabContent">
-          {selectedTable.content}
+          {selectedTableId.content}
         </div>
       </div>
     </div>
